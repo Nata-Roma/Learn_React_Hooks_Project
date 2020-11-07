@@ -1,12 +1,36 @@
-import React, { Component, useState } from "react";
+import React from "react";
+import ReactDOM from "react-dom";
 import "./styles.css";
 
-const App = () => {
-  const [name, setName] = useState("");
+let values = [];
+let currentHook = 0;
 
-  const changeHandler = (e) => {
-    setName(e.target.value);
+const useState = (initialState) => {
+  if (typeof values[currentHook] === "undefined")
+    values[currentHook] = initialState;
+
+  let hookIndex = currentHook;
+  const setState = (newValue) => {
+    values[hookIndex] = newValue;
+    ReactDOM.render(<App />, document.getElementById("root"));
   };
+
+  return [values[currentHook++], setState];
+};
+
+const App = () => {
+  currentHook = 0;
+
+  const [name, setName] = useState("");
+  const [lastName, setLastName] = useState("");
+
+  function changeHandler(e) {
+    setName(e.target.value);
+  }
+
+  function changeLastName(e) {
+    setLastName(e.target.value);
+  }
 
   return (
     <div className="App">
@@ -14,8 +38,10 @@ const App = () => {
       <h2>
         This is what you are typing:{" "}
         <span style={{ color: "red" }}>{name}</span>
+        <span style={{ color: "blue" }}>{lastName}</span>
       </h2>
       <input type="text" value={name} onChange={changeHandler} />
+      <input type="text" value={lastName} onChange={changeLastName} />
     </div>
   );
 };
