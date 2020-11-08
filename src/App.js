@@ -21,11 +21,16 @@ const useState = (initialState) => {
 const App = () => {
   currentHook = 0;
 
+  const [enableName, setEnableName] = useState(false);
   const [name, setName] = useState("");
   const [lastName, setLastName] = useState("");
 
+  function enableNameChange() {
+    setEnableName(!enableName);
+  }
+
   function changeHandler(e) {
-    setName(e.target.value);
+    enableName ? setName(e.target.value) : setName("");
   }
 
   function changeLastName(e) {
@@ -37,9 +42,10 @@ const App = () => {
       <h1>Hello CodeSandbox</h1>
       <h2>
         This is what you are typing:{" "}
-        <span style={{ color: "red" }}>{name}</span>
+        {enableName ? <span style={{ color: "red" }}>{name}</span> : ""}
         <span style={{ color: "blue" }}>{lastName}</span>
       </h2>
+      <input type="checkbox" value={enableName} onChange={enableNameChange} />
       <input type="text" value={name} onChange={changeHandler} />
       <input type="text" value={lastName} onChange={changeLastName} />
     </div>
