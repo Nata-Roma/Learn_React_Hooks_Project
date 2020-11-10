@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
-const CreatePost = ({ user, posts, setPosts }) => {
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
+const CreatePost = ({ user, posts, dispatch }) => {
+  const [title, setTitle] = useState('');
+  const [content, setContent] = useState('');
   // const [] = useState('');
 
   const titleChange = (e) => {
@@ -15,14 +15,14 @@ const CreatePost = ({ user, posts, setPosts }) => {
 
   const submitNewPost = (e) => {
     e.preventDefault();
-    const newPost = { title, content, author: user };
-    setPosts([newPost, ...posts]);
-    setTitle("");
-    setContent("");
+    // const newPost = { title, content, author: user };
+    dispatch({ type: 'CREATE_POST', title, content, author: user });
+    setTitle('');
+    setContent('');
   };
 
   return (
-    <form style={{ border: "1px solid black" }} onSubmit={submitNewPost}>
+    <form style={{ border: '1px solid black' }} onSubmit={submitNewPost}>
       <h3>Create post</h3>
       <div>
         Author: <b>{user}</b>

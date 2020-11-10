@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 
 const Post = ({ title, content, author }) => {
   return (
-    <div style={{ border: "1px solid black" }}>
+    <div style={{ border: '1px solid black' }}>
       <h4>
         <u>{title}</u>
       </h4>

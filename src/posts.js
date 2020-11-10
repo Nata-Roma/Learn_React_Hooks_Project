@@ -1,5 +1,5 @@
-import React from "react";
-import Post from "./post";
+import React from 'react';
+import Post from './post';
 
 const Posts = ({ posts = [] }) => {
   return (

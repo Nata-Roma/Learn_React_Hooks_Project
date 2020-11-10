@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
-const LogIn = ({ setUser }) => {
-  const [userName, setUserName] = useState("");
-  const [password, setPassword] = useState("");
+const LogIn = ({ dispatch }) => {
+  const [userName, setUserName] = useState('');
+  const [password, setPassword] = useState('');
 
   const userNameChange = (e) => {
     setUserName(e.target.value);
@@ -16,7 +16,7 @@ const LogIn = ({ setUser }) => {
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        setUser(userName);
+        dispatch({ type: 'LOGIN', userName });
       }}
     >
       <h3>Log in</h3>
