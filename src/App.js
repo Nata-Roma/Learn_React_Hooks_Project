@@ -1,30 +1,30 @@
-import React, { useReducer, useState } from 'react';
-import CreatePost from './create-post';
-import Posts from './posts';
-import appReducer from './reducers';
+import React, { useEffect, useReducer, useState } from "react";
+import CreatePost from "./create-post";
+import Posts from "./posts";
+import appReducer from "./reducers";
 
-import './styles.css';
-import UserBlock from './user-block';
+import "./styles.css";
+import UserBlock from "./user-block";
 
 const defaultPosts = [
-  { title: 'First', content: 'bla-bla-bla', author: 'Myself' },
-  { title: 'Second', content: 'bla-bla', author: 'Myself' }
+  { title: "First", content: "bla-bla-bla", author: "Myself" },
+  { title: "Second", content: "bla-bla", author: "Myself" }
 ];
 
 const actions = [
-  { type: 'LOGIN', username: 'qw', password: '123' },
+  { type: "LOGIN", username: "qw", password: "123" },
   {
-    type: 'REGISTER',
-    username: 'qw',
-    password: '123',
-    passwordRepeat: '123'
+    type: "REGISTER",
+    username: "qw",
+    password: "123",
+    passwordRepeat: "123"
   },
-  { type: 'LOGOUT' },
+  { type: "LOGOUT" },
   {
-    type: 'CREATE_POST',
-    title: 'First',
-    content: 'bla-bla-bla',
-    author: 'Myself'
+    type: "CREATE_POST",
+    title: "First",
+    content: "bla-bla-bla",
+    author: "Myself"
   }
 ];
 
@@ -35,11 +35,19 @@ const App = () => {
   // const [posts, dispatchPosts] = useReducer(postsReducer, defaultPosts);
 
   const [state, dispatch] = useReducer(appReducer, {
-    user: '',
+    user: "",
     posts: defaultPosts
   });
 
   const { user, posts } = state;
+
+  useEffect(() => {
+    if (user) {
+      document.title = `${user} React Hooks Blog`;
+    } else {
+      document.title = `React Hooks Blog`;
+    }
+  }, [user]);
 
   return (
     <div className="App">

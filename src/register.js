@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 const Register = ({ dispatch }) => {
-  const [userName, setUserName] = useState('');
-  const [registerPassword, setRegisterPassword] = useState('');
-  const [registerPasswordRepeat, setRegisterPasswordRepeat] = useState('');
+  const [userName, setUserName] = useState("");
+  const [registerPassword, setRegisterPassword] = useState("");
+  const [registerPasswordRepeat, setRegisterPasswordRepeat] = useState("");
 
   const usernameChange = (e) => {
     setUserName(e.target.value);
@@ -21,7 +21,7 @@ const Register = ({ dispatch }) => {
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        dispatch({ type: 'REGISTER', userName });
+        dispatch({ type: "REGISTER", userName });
       }}
     >
       <h3>Register new User</h3>
@@ -37,7 +37,7 @@ const Register = ({ dispatch }) => {
       <input
         type="password"
         name="register-password"
-        id="login-password"
+        id="register-password"
         value={registerPassword}
         onChange={passwordChange}
       />
@@ -45,7 +45,7 @@ const Register = ({ dispatch }) => {
       <input
         type="password"
         name="register-password-repeat"
-        id="login-password-repeat"
+        id="register-password-repeat"
         value={registerPasswordRepeat}
         onChange={passwordRepeatChange}
       />
