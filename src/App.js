@@ -1,30 +1,33 @@
-import React, { useEffect, useReducer, useState } from "react";
-import CreatePost from "./create-post";
-import Posts from "./posts";
-import appReducer from "./reducers";
+import React, { useEffect, useReducer, useState } from 'react';
+import ChangeTheme from './change-theme';
+import { ThemeContext } from './contexts';
+import CreatePost from './create-post';
+import Header from './header';
+import Posts from './posts';
+import appReducer from './reducers';
 
-import "./styles.css";
-import UserBlock from "./user-block";
+import './styles.css';
+import UserBlock from './user-block';
 
 const defaultPosts = [
-  { title: "First", content: "bla-bla-bla", author: "Myself" },
-  { title: "Second", content: "bla-bla", author: "Myself" }
+  { title: 'First', content: 'bla-bla-bla', author: 'Myself' },
+  { title: 'Second', content: 'bla-bla', author: 'Myself' }
 ];
 
 const actions = [
-  { type: "LOGIN", username: "qw", password: "123" },
+  { type: 'LOGIN', username: 'qw', password: '123' },
   {
-    type: "REGISTER",
-    username: "qw",
-    password: "123",
-    passwordRepeat: "123"
+    type: 'REGISTER',
+    username: 'qw',
+    password: '123',
+    passwordRepeat: '123'
   },
-  { type: "LOGOUT" },
+  { type: 'LOGOUT' },
   {
-    type: "CREATE_POST",
-    title: "First",
-    content: "bla-bla-bla",
-    author: "Myself"
+    type: 'CREATE_POST',
+    title: 'First',
+    content: 'bla-bla-bla',
+    author: 'Myself'
   }
 ];
 
@@ -35,11 +38,16 @@ const App = () => {
   // const [posts, dispatchPosts] = useReducer(postsReducer, defaultPosts);
 
   const [state, dispatch] = useReducer(appReducer, {
-    user: "",
+    user: '',
     posts: defaultPosts
   });
 
   const { user, posts } = state;
+
+  const [theme, setTheme] = useState({
+    primaryColor: 'deepskyblue',
+    secondaryColor: 'coral'
+  });
 
   useEffect(() => {
     if (user) {
@@ -50,13 +58,17 @@ const App = () => {
   }, [user]);
 
   return (
-    <div className="App">
-      <UserBlock dispatch={dispatch} user={user} />
-      <br />
-      {user && <CreatePost user={user} dispatch={dispatch} posts={posts} />}
-      <br />
-      {user && <Posts posts={posts} />}
-    </div>
+    <ThemeContext.Provider value={theme}>
+      <div className="App">
+        <Header text="React Hooks Blog" />
+        <ChangeTheme theme={theme} setTheme={setTheme} />
+        <UserBlock dispatch={dispatch} user={user} />
+        <br />
+        {user && <CreatePost user={user} dispatch={dispatch} posts={posts} />}
+        <br />
+        {user && <Posts posts={posts} />}
+      </div>
+    </ThemeContext.Provider>
   );
 };
 
