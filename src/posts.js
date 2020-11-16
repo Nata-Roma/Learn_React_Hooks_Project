@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { StateContext } from './contexts';
 import Post from './post';
 
-const Posts = ({ posts = [] }) => {
+const Posts = () => {
+  const { state } = useContext(StateContext);
+  const { posts } = state;
   return (
     <div>
       {posts.map((post, index) => (

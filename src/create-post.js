@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { StateContext } from './contexts';
 
-const CreatePost = ({ user, posts, dispatch }) => {
+const CreatePost = () => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
+  const { state, dispatch } = useContext(StateContext);
+  const { user } = state;
   // const [] = useState('');
 
   const titleChange = (e) => {

@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from 'react';
+import { StateContext } from './contexts';
 
-const Register = ({ dispatch }) => {
-  const [userName, setUserName] = useState("");
-  const [registerPassword, setRegisterPassword] = useState("");
-  const [registerPasswordRepeat, setRegisterPasswordRepeat] = useState("");
+const Register = () => {
+  const [userName, setUserName] = useState('');
+  const [registerPassword, setRegisterPassword] = useState('');
+  const [registerPasswordRepeat, setRegisterPasswordRepeat] = useState('');
+  const { dispatch } = useContext(StateContext);
 
   const usernameChange = (e) => {
     setUserName(e.target.value);
@@ -21,7 +23,7 @@ const Register = ({ dispatch }) => {
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        dispatch({ type: "REGISTER", userName });
+        dispatch({ type: 'REGISTER', userName });
       }}
     >
       <h3>Register new User</h3>

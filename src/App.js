@@ -1,6 +1,6 @@
 import React, { useEffect, useReducer, useState } from 'react';
 import ChangeTheme from './change-theme';
-import { ThemeContext } from './contexts';
+import { StateContext, ThemeContext } from './contexts';
 import CreatePost from './create-post';
 import Header from './header';
 import Posts from './posts';
@@ -58,17 +58,19 @@ const App = () => {
   }, [user]);
 
   return (
-    <ThemeContext.Provider value={theme}>
-      <div className="App">
-        <Header text="React Hooks Blog" />
-        <ChangeTheme theme={theme} setTheme={setTheme} />
-        <UserBlock dispatch={dispatch} user={user} />
-        <br />
-        {user && <CreatePost user={user} dispatch={dispatch} posts={posts} />}
-        <br />
-        {user && <Posts posts={posts} />}
-      </div>
-    </ThemeContext.Provider>
+    <StateContext.Provider value={{ state, dispatch }}>
+      <ThemeContext.Provider value={theme}>
+        <div className="App">
+          <Header text="React Hooks Blog" />
+          <ChangeTheme theme={theme} setTheme={setTheme} />
+          <UserBlock />
+          <br />
+          {user && <CreatePost />}
+          <br />
+          {user && <Posts />}
+        </div>
+      </ThemeContext.Provider>
+    </StateContext.Provider>
   );
 };
 

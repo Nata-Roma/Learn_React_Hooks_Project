@@ -1,20 +1,23 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useContext } from 'react';
+import { StateContext } from './contexts';
 
 import LogIn from './login';
 import LogOut from './logout';
 import Register from './register';
 
-const UserBlock = ({ user, dispatch }) => {
+const UserBlock = () => {
+  const { state } = useContext(StateContext);
+  const { user } = state;
   return (
     <div>
       {user ? (
         <Fragment>
-          <LogOut user={user} dispatch={dispatch} />
+          <LogOut />
         </Fragment>
       ) : (
         <Fragment>
-          <Register dispatch={dispatch} />
-          <LogIn dispatch={dispatch} />
+          <Register />
+          <LogIn />
         </Fragment>
       )}
     </div>
