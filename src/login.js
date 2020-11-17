@@ -18,7 +18,7 @@ const LogIn = () => {
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        dispatch({ type: 'LOGIN', userName });
+        dispatch({ type: 'LOGIN', username });
       }}
     >
       <h3>Log in</h3>
