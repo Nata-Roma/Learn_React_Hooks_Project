@@ -1,6 +1,7 @@
 import React from 'react';
 
 export const ThemeContext = React.createContext({
+  id: 1,
   primaryColor: 'deepskyblue',
   secondaryColor: 'coral'
 });

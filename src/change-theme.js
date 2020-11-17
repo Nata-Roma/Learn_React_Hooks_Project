@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const THEMES = [
-  { primaryColor: 'deepskyblue', secondaryColor: 'coral' },
-  { primaryColor: 'orchid', secondaryColor: 'mediumseagreen' }
+  { id: 1, primaryColor: 'deepskyblue', secondaryColor: 'coral' },
+  { id: 2, primaryColor: 'orchid', secondaryColor: 'mediumseagreen' },
+  { id: 3, primaryColor: 'darkslategray', secondaryColor: 'slategrey' }
 ];
 
 const ThemeItem = ({ theme, active, onClick }) => {
@@ -28,6 +29,7 @@ const ChangeTheme = ({ theme, setTheme }) => {
       t.secondaryColor === theme.secondaryColor
     );
   };
+  const [themes, setThemes] = useState([]);
 
   return (
     <div>

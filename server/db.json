@@ -1,0 +1,22 @@
+{
+  "posts": [
+    {
+      "id": "first",
+      "title": "First",
+      "content": "bla-bla-bla",
+      "author": "Myself"
+    },
+    {
+      "id": "second",
+      "title": "Second",
+      "content": "bla-bla",
+      "author": "Myself"
+    }
+  ],
+  "users": [{ "id": 1, "username": "Myself", "password": "1234" }],
+  "themes": [
+    { "id": 1, "primaryColor": "deepskyblue", "secondaryColor": "coral" },
+    { "id": 2, "primaryColor": "orchid", "secondaryColor": "mediumseagreen" },
+    { "id": 3, "primaryColor": "darkslategray", "secondaryColor": "slategrey" }
+  ]
+}

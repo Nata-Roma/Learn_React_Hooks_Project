@@ -10,8 +10,8 @@ import './styles.css';
 import UserBlock from './user-block';
 
 const defaultPosts = [
-  { title: 'First', content: 'bla-bla-bla', author: 'Myself' },
-  { title: 'Second', content: 'bla-bla', author: 'Myself' }
+  { id: 'first', title: 'First', content: 'bla-bla-bla', author: 'Myself' },
+  { id: 'second', title: 'Second', content: 'bla-bla', author: 'Myself' }
 ];
 
 const actions = [
@@ -42,9 +42,10 @@ const App = () => {
     posts: defaultPosts
   });
 
-  const { user, posts } = state;
+  const { user } = state;
 
   const [theme, setTheme] = useState({
+    id: 1,
     primaryColor: 'deepskyblue',
     secondaryColor: 'coral'
   });
