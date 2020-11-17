@@ -2,12 +2,12 @@ import React, { useContext, useState } from 'react';
 import { StateContext } from './contexts';
 
 const LogIn = () => {
-  const [userName, setUserName] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const { dispatch } = useContext(StateContext);
 
   const userNameChange = (e) => {
-    setUserName(e.target.value);
+    setUsername(e.target.value);
   };
 
   const passwordChange = (e) => {
@@ -25,7 +25,7 @@ const LogIn = () => {
       <label htmlFor="login-username">Username:</label>
       <input
         type="text"
-        name={userName}
+        name={username}
         id="login-username"
         onChange={userNameChange}
       />
@@ -40,7 +40,7 @@ const LogIn = () => {
       <input
         type="submit"
         value="Login"
-        disabled={userName.length === 0 || password.length === 0}
+        disabled={username.length === 0 || password.length === 0}
       />
     </form>
   );

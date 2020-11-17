@@ -2,13 +2,13 @@ import React, { useContext, useState } from 'react';
 import { StateContext } from './contexts';
 
 const Register = () => {
-  const [userName, setUserName] = useState('');
+  const [username, setUsername] = useState('');
   const [registerPassword, setRegisterPassword] = useState('');
   const [registerPasswordRepeat, setRegisterPasswordRepeat] = useState('');
   const { dispatch } = useContext(StateContext);
 
   const usernameChange = (e) => {
-    setUserName(e.target.value);
+    setUsername(e.target.value);
   };
 
   const passwordChange = (e) => {
@@ -23,7 +23,7 @@ const Register = () => {
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        dispatch({ type: 'REGISTER', userName });
+        dispatch({ type: 'REGISTER', username });
       }}
     >
       <h3>Register new User</h3>
@@ -55,7 +55,7 @@ const Register = () => {
         type="submit"
         value="Register"
         disabled={
-          userName.length === 0 ||
+          username.length === 0 ||
           registerPassword.length === 0 ||
           registerPassword !== registerPasswordRepeat
         }

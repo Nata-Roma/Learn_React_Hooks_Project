@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
-const THEMES = [
-  { id: 1, primaryColor: 'deepskyblue', secondaryColor: 'coral' },
-  { id: 2, primaryColor: 'orchid', secondaryColor: 'mediumseagreen' },
-  { id: 3, primaryColor: 'darkslategray', secondaryColor: 'slategrey' }
-];
+// const THEMES = [
+//   { id: 1, primaryColor: 'deepskyblue', secondaryColor: 'coral' },
+//   { id: 2, primaryColor: 'orchid', secondaryColor: 'mediumseagreen' },
+//   { id: 3, primaryColor: 'darkslategray', secondaryColor: 'slategrey' }
+// ];
 
 const ThemeItem = ({ theme, active, onClick }) => {
   return (
@@ -31,10 +31,16 @@ const ChangeTheme = ({ theme, setTheme }) => {
   };
   const [themes, setThemes] = useState([]);
 
+  useEffect(() => {
+    fetch('/api/themes')
+      .then((response) => response.json())
+      .then((themes) => setThemes(themes));
+  }, []);
+
   return (
     <div>
       Change theme:
-      {THEMES.map((t, index) => (
+      {themes.map((t, index) => (
         <ThemeItem
           key={`theme-${index}`}
           theme={t}
